@@ -6,3 +6,7 @@
 # Import library
 import pygame
 import sys
+
+# Initialyze pygame
+pygame.init()
+pygame.mixer.init()
