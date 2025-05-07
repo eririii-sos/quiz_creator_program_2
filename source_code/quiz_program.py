@@ -15,3 +15,10 @@ pygame.mixer.init()
 WIDTH, HEIGHT = 1067, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 screen.fill((255, 255, 255))  # Initial background fill
+
+# Main loop
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running = False
