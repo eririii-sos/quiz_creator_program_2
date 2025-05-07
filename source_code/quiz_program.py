@@ -10,3 +10,8 @@ import sys
 # Initialyze pygame
 pygame.init()
 pygame.mixer.init()
+
+# Set up window
+WIDTH, HEIGHT = 1067, 600
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
+screen.fill((255, 255, 255))  # Initial background fill
