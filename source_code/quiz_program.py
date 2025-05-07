@@ -17,9 +17,20 @@ screen = pygame.display.set_mode((WIDTH, HEIGHT))
 screen.fill((255, 255, 255))  # Initial background fill
 pygame.display.set_caption("Quiz Day")
 
+# Load display background(s) 
+home_background = pygame.image.load("assets/background.png")
+background_1 = pygame.transform.scale(home_background, (WIDTH, HEIGHT))
+
+# Set menu background
+def draw_menu():
+    screen.blit(background_1, (0, 0))  # Draw background
+
 # Main loop
 running = True
 while running:
+
+    draw_menu()
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
