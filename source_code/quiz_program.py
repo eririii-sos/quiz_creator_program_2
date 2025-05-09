@@ -33,6 +33,21 @@ char_expression_7 = pygame.transform.scale(pygame.image.load("assets/begging.png
 char_expression_8 = pygame.transform.scale(pygame.image.load("assets/begging2.png"), (300, 400))
 char_expression_9 = pygame.transform.scale(pygame.image.load("assets/thinking.png"), (300, 400))
 
+# Monologue text data for the hallway scene
+scene_1_monologue = [
+    "(Press SPACE to proceed)",  # First message
+    "Oh",  # Start of Monologue
+    "GOOOOOOOOOOSH!",  
+    "I completely forgot about our quiz today!",  
+    "I wasn't able to study! What am I going to do?",  
+    "...",  
+    "...",  
+    "...",  
+    "hey, uh...", 
+    "...will you help me?",  
+    "PLEASEEEEEEEE :3",  # End of Monologue
+]
+
 # Game state
 game_state = "menu"
 
