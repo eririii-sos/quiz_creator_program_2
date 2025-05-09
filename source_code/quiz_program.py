@@ -45,6 +45,12 @@ start_button = pygame.Rect(395, 270, 280, 60)
 exit_button = pygame.Rect(395, 360, 280, 60)
 info_button = pygame.Rect(WIDTH - 60, HEIGHT - 60, 40, 40)
 
+# UI settings
+text_box_rect = pygame.Rect(200, 500, 700, 250)
+text_color = (255, 255, 255)
+box_color = (0, 0, 0)
+box_alpha = 180
+
 # Set menu background
 def draw_menu():
     screen.blit(background_1, (0, 0))  # Draw background
@@ -61,6 +67,12 @@ def dev_info_button():
     pygame.draw.rect(screen, (100, 100, 100), info_button)
     info_text = font.render("About", True, (255, 255, 255))
     screen.blit(info_text, (info_button.x + 20, info_button.y + 10))
+
+def draw_text_box():
+    box = pygame.Surface((text_box_rect.width, text_box_rect.height))
+    box.set_alpha(box_alpha)
+    box.fill(box_color)
+    screen.blit(box, text_box_rect.topleft)
 
 # 1st scene transitioning with fade in effect
 def Hallway_scene(character_image, duration=1000):
@@ -95,6 +107,8 @@ while running:
         if not Hallway_scene_done:
             Hallway_scene(char_expression_1)  # Character fades in
             Hallway_scene_done = True  
+
+        draw_text_box()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
