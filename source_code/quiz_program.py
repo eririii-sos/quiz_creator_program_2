@@ -61,6 +61,14 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        
+        elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+            mouse_pos = pygame.mouse.get_pos()
+
+            if game_state == "menu":
+                if exit_button.collidepoint(mouse_pos):
+                    running = False
+
 
     # Update the display
     pygame.display.flip()            
