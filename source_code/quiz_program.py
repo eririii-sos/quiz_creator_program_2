@@ -187,6 +187,14 @@ while running:
                     game_state = "play"               
                 elif exit_button.collidepoint(mouse_pos):
                     running = False
+        
+        elif event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                if current_line < len(scene_1_monologue):
+                    if char_index == len(scene_1_monologue[current_line]):
+                        current_line += 1
+                        typed_text = ""
+                        char_index = 0
 
     # Update the display
     pygame.display.flip()            
