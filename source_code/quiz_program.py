@@ -55,8 +55,12 @@ def dev_info_button():
 running = True
 while running:
 
-    draw_menu()
-    dev_info_button()
+    if game_state == "menu":
+        draw_menu()
+        dev_info_button()
+    
+    elif game_state == "play":
+        screen.blit(background_2, (0, 0))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -66,7 +70,9 @@ while running:
             mouse_pos = pygame.mouse.get_pos()
 
             if game_state == "menu":
-                if exit_button.collidepoint(mouse_pos):
+                if start_button.collidepoint(mouse_pos):
+                    game_state = "play"                
+                elif exit_button.collidepoint(mouse_pos):
                     running = False
 
 
