@@ -68,11 +68,14 @@ def dev_info_button():
     info_text = font.render("About", True, (255, 255, 255))
     screen.blit(info_text, (info_button.x + 20, info_button.y + 10))
 
+# Text box for character monologue in 1st scene
 def draw_text_box():
     box = pygame.Surface((text_box_rect.width, text_box_rect.height))
     box.set_alpha(box_alpha)
     box.fill(box_color)
     screen.blit(box, text_box_rect.topleft)
+    character_name_display = font.render("Eri", True, (255, 255, 255))
+    screen.blit(character_name_display, (start_button.x + -190, start_button.y + 210))
 
 # 1st scene transitioning with fade in effect
 def Hallway_scene(character_image, duration=1000):
