@@ -101,7 +101,39 @@ def draw_text_box():
     screen.blit(box, text_box_rect.topleft)
     character_name_display = font.render("Eri", True, (255, 255, 255))
     screen.blit(character_name_display, (start_button.x + -190, start_button.y + 210))
+    
+    # Wrap text
+    words = typed_text.split(' ')
+    lines = []
+    line = ''
+    for word in words:
+        test_line = line + word + ' '
+        if font.size(test_line)[0] < text_box_rect.width - 20:
+            line = test_line
+        else:
+            lines.append(line)
+            line = word + ' '
+    lines.append(line)
 
+    for i, line in enumerate(lines):
+        text_surface = font.render(line, True, text_color)
+        screen.blit(text_surface, (text_box_rect.left + 10, text_box_rect.top + 10 + i * 28))
+
+# Monologue Processing
+def process_monologue(current_line, char_index, dt):
+    global typed_text, text_timer 
+    if current_line < len(scene_1_monologue):
+        line_text = scene_1_monologue[current_line]
+        if char_index < len(line_text):
+            text_timer += dt
+            if text_timer >= TEXT_SPEED:
+                typed_text += line_text[char_index]
+                char_index += 1
+                text_timer = 0
+        return typed_text, char_index
+    else:
+        return None, char_index  # End of monologue sequence
+    
 # 1st scene transitioning with fade in effect
 def Hallway_scene(character_image, duration=1000):
     fade_surface = pygame.Surface((WIDTH, HEIGHT))
@@ -138,6 +170,9 @@ while running:
             Hallway_scene(char_expression_1)  # Character fades in
             Hallway_scene_done = True  
 
+        if current_line < len(scene_1_monologue):
+            typed_text, char_index = process_monologue(current_line, char_index, dt)
+        
         draw_text_box()
 
     for event in pygame.event.get():
