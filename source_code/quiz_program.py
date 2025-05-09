@@ -36,7 +36,8 @@ char_expression_9 = pygame.transform.scale(pygame.image.load("assets/thinking.pn
 # Monologue text data for the hallway scene
 scene_1_monologue = [
     "(Press SPACE to proceed)",  # First message
-    "Oh",  # Start of Monologue
+    "OH",  # Start of Monologue
+    "MY",
     "GOOOOOOOOOOSH!",  
     "I completely forgot about our quiz today!",  
     "I wasn't able to study! What am I going to do?",  
@@ -47,6 +48,22 @@ scene_1_monologue = [
     "...will you help me?",  
     "PLEASEEEEEEEE :3",  # End of Monologue
 ]
+
+# Character expressions mapped to each dialogue line
+expression_map = {
+    0: char_expression_1,  
+    1: char_expression_2,  
+    2: char_expression_2,  
+    3: char_expression_3, 
+    4: char_expression_3,  
+    5: char_expression_4,  
+    6: char_expression_4,  
+    7: char_expression_5,  
+    8: char_expression_6,  
+    9: char_expression_7,  
+    10: char_expression_8,  
+    11: char_expression_9,  
+}
 
 # Monologue typing logic
 current_line = 0
@@ -172,6 +189,9 @@ while running:
 
         if current_line < len(scene_1_monologue):
             typed_text, char_index = process_monologue(current_line, char_index, dt)
+
+        # Update character expressions as dialogue progresses
+        screen.blit(expression_map[current_line], (WIDTH // 2 - 150, HEIGHT - 400))
         
         draw_text_box()
 
