@@ -48,6 +48,13 @@ scene_1_monologue = [
     "PLEASEEEEEEEE :3",  # End of Monologue
 ]
 
+# Monologue typing logic
+current_line = 0
+typed_text = ""
+char_index = 0
+text_timer = 0  # Initialized text_timer 
+TEXT_SPEED = 30
+
 # Game state
 game_state = "menu"
 
