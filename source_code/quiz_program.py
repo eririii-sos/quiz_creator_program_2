@@ -25,9 +25,9 @@ font = pygame.font.Font(None, 28)
 title_font = pygame.font.Font(None, 48)
 
 # Set Menu buttons
-start_button = pygame.Rect(100, 100, 100, 100)
-exit_button = pygame.Rect(200, 200, 200, 200)
-info_button = pygame.Rect(WIDTH - 110, HEIGHT - 50, 100, 50)
+start_button = pygame.Rect(395, 270, 280, 60)
+exit_button = pygame.Rect(395, 360, 280, 60)
+info_button = pygame.Rect(WIDTH - 60, HEIGHT - 60, 40, 40)
 
 # Set menu background
 def draw_menu():
