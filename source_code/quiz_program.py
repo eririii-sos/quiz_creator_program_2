@@ -55,6 +55,9 @@ char_index = 0
 text_timer = 0  # Initialized text_timer 
 TEXT_SPEED = 30
 
+# Clock for frame rate
+clock = pygame.time.Clock()
+
 # Game state
 game_state = "menu"
 
@@ -121,6 +124,8 @@ Hallway_scene_done = False # Variable to track if the fade-in has occurred
 # Main loop
 running = True
 while running:
+    
+    dt = clock.tick(60)
 
     if game_state == "menu":
         draw_menu()
