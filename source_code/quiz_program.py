@@ -19,6 +19,11 @@ pygame.display.set_caption("Quiz Day")
 # Load display background(s) 
 home_background = pygame.image.load("assets/background.png")
 background_1 = pygame.transform.scale(home_background, (WIDTH, HEIGHT))
+school_hall_background = pygame.image.load("assets/school_hall_background.jpg")
+background_2 = pygame.transform.scale(school_hall_background, (WIDTH, HEIGHT))
+
+# Game state
+game_state = "menu"
 
 # Font setup
 font = pygame.font.Font(None, 28)
