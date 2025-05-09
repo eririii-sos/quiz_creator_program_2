@@ -22,6 +22,17 @@ background_1 = pygame.transform.scale(home_background, (WIDTH, HEIGHT))
 school_hall_background = pygame.image.load("assets/school_hall_background.jpg")
 background_2 = pygame.transform.scale(school_hall_background, (WIDTH, HEIGHT))
 
+# Load character facial expression set
+char_expression_1 = pygame.transform.scale(pygame.image.load("assets/neutral2.png"), (300, 400))
+char_expression_2 = pygame.transform.scale(pygame.image.load("assets/shocked.png"), (300, 400))
+char_expression_3 = pygame.transform.scale(pygame.image.load("assets/disbelief.png"), (300, 400))
+char_expression_4 = pygame.transform.scale(pygame.image.load("assets/wondering.png"), (300, 400))
+char_expression_5 = pygame.transform.scale(pygame.image.load("assets/thinking2.png"), (300, 400))
+char_expression_6 = pygame.transform.scale(pygame.image.load("assets/AHEM.png"), (300, 400))
+char_expression_7 = pygame.transform.scale(pygame.image.load("assets/begging.png"), (300, 400))
+char_expression_8 = pygame.transform.scale(pygame.image.load("assets/begging2.png"), (300, 400))
+char_expression_9 = pygame.transform.scale(pygame.image.load("assets/thinking.png"), (300, 400))
+
 # Game state
 game_state = "menu"
 
@@ -71,10 +82,9 @@ while running:
 
             if game_state == "menu":
                 if start_button.collidepoint(mouse_pos):
-                    game_state = "play"                
+                    game_state = "play"               
                 elif exit_button.collidepoint(mouse_pos):
                     running = False
-
 
     # Update the display
     pygame.display.flip()            
