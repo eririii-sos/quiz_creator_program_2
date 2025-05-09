@@ -62,6 +62,25 @@ def dev_info_button():
     info_text = font.render("About", True, (255, 255, 255))
     screen.blit(info_text, (info_button.x + 20, info_button.y + 10))
 
+# 1st scene transitioning with fade in effect
+def Hallway_scene(character_image, duration=1000):
+    fade_surface = pygame.Surface((WIDTH, HEIGHT))
+    fade_surface.fill((0, 0, 0))
+    fade_clock = pygame.time.Clock()
+    alpha = 255
+    fade_speed = 255 / (duration / 10)
+    
+    while alpha > 0:
+        fade_surface.set_alpha(int(alpha))
+        screen.blit(background_2, (0, 0))  # Background stays static
+        screen.blit(character_image, (WIDTH//2 - 150, HEIGHT - 400))
+        screen.blit(fade_surface, (0, 0))
+        pygame.display.update()
+        alpha -= fade_speed
+        fade_clock.tick(60)
+
+Hallway_scene_done = False # Variable to track if the fade-in has occurred
+
 # Main loop
 running = True
 while running:
@@ -72,6 +91,10 @@ while running:
     
     elif game_state == "play":
         screen.blit(background_2, (0, 0))
+
+        if not Hallway_scene_done:
+            Hallway_scene(char_expression_1)  # Character fades in
+            Hallway_scene_done = True  
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
