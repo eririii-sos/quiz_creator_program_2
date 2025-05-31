@@ -170,6 +170,18 @@ def Hallway_scene(character_image, duration=1000):
 
 Hallway_scene_done = False # Variable to track if the fade-in has occurred
 
+# Yes/No buttons at end of monologue
+yes_button = pygame.Rect(300, 500, 200, 50)
+no_button = pygame.Rect(550, 500, 200, 50)
+
+def draw_yes_no_buttons():
+    pygame.draw.rect(screen, (0, 120, 0), yes_button)
+    pygame.draw.rect(screen, (120, 0, 0), no_button)
+    yes_text = font.render("Yes", True, (255, 255, 255))
+    no_text = font.render("No", True, (255, 255, 255))
+    screen.blit(yes_text, (yes_button.x + 75, yes_button.y + 15))
+    screen.blit(no_text, (no_button.x + 75, no_button.y + 15))
+
 # Main loop
 running = True
 while running:
@@ -192,6 +204,8 @@ while running:
             expression_to_use = expression_map.get(current_line, expression_map[11])
             screen.blit(expression_to_use, (WIDTH // 2 - 150, HEIGHT - 400))
             draw_text_box()
+
+            draw_yes_no_buttons()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
