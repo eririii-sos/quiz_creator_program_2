@@ -227,7 +227,8 @@ while running:
             screen.blit(char_expression_9, (WIDTH // 2 - 150, HEIGHT - 400))
             draw_yes_no_buttons()
 
-            show_popup_message()
+    elif game_state == "quiz":
+        show_popup_message()
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -241,7 +242,13 @@ while running:
                     game_state = "play"               
                 elif exit_button.collidepoint(mouse_pos):
                     running = False
-        
+
+            elif game_state == "play" and show_yes_no:
+                if yes_button.collidepoint(mouse_pos):
+                    game_state = "quiz"
+                elif no_button.collidepoint(mouse_pos):
+                    game_state = "menu"
+
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
                 if current_line < len(scene_1_monologue):
