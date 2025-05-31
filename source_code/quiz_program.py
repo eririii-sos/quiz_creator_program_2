@@ -186,6 +186,19 @@ def draw_yes_no_buttons():
     screen.blit(yes_text, (yes_button.x + 75, yes_button.y + 15))
     screen.blit(no_text, (no_button.x + 75, no_button.y + 15))
 
+# Pop up message if user proceeds with quiz game
+def show_popup_message():
+    screen.blit(background_3, (0, 0))
+    instruction_box = pygame.Surface((600, 200))
+    instruction_box.fill((0, 0, 0))
+    instruction_box.set_alpha(200)
+    screen.blit(instruction_box, (WIDTH // 2 - 300, HEIGHT // 2 - 100))
+
+    instruction_text_1 = font.render("Click the correct answer from the choices.", True, (255, 255, 255))
+    instruction_text_2 = font.render("Press SPACE to start.", True, (255, 255, 255))
+    screen.blit(instruction_text_1, (WIDTH // 2 - 210, HEIGHT // 2 - 30))
+    screen.blit(instruction_text_2, (WIDTH // 2 - 120, HEIGHT // 2))
+
 # Main loop
 running = True
 while running:
@@ -214,6 +227,8 @@ while running:
             screen.blit(char_expression_9, (WIDTH // 2 - 150, HEIGHT - 400))
             draw_yes_no_buttons()
 
+            show_popup_message()
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
