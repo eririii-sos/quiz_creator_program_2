@@ -93,6 +93,10 @@ text_color = (255, 255, 255)
 box_color = (0, 0, 0)
 box_alpha = 180
 
+# State variables
+Hallway_scene_done = False # Variable to track if the fade-in has occurred
+show_yes_no = False
+
 # Set menu background
 def draw_menu():
     screen.blit(background_1, (0, 0))  # Draw background
@@ -168,8 +172,6 @@ def Hallway_scene(character_image, duration=1000):
         alpha -= fade_speed
         fade_clock.tick(60)
 
-Hallway_scene_done = False # Variable to track if the fade-in has occurred
-
 # Yes/No buttons at end of monologue
 yes_button = pygame.Rect(300, 500, 200, 50)
 no_button = pygame.Rect(550, 500, 200, 50)
@@ -199,12 +201,14 @@ while running:
             Hallway_scene(char_expression_1)  # Character fades in
             Hallway_scene_done = True  
 
-        if current_line < len(scene_1_monologue): # Update character expressions as dialogue progresses
+        if current_line < len(scene_1_monologue): # Update character expressions as monologue progresses
             typed_text, char_index = process_monologue(current_line, char_index, dt)
             expression_to_use = expression_map.get(current_line, expression_map[11])
             screen.blit(expression_to_use, (WIDTH // 2 - 150, HEIGHT - 400))
             draw_text_box()
 
+        if current_line >= len(scene_1_monologue):  # Have Yes and No buttons appear after monologue
+            show_yes_no = True
             draw_yes_no_buttons()
 
     for event in pygame.event.get():
