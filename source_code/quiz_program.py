@@ -21,6 +21,8 @@ home_background = pygame.image.load("assets/background.png")
 background_1 = pygame.transform.scale(home_background, (WIDTH, HEIGHT))
 school_hall_background = pygame.image.load("assets/school_hall_background.jpg")
 background_2 = pygame.transform.scale(school_hall_background, (WIDTH, HEIGHT))
+quiz_background = pygame.image.load("assets/quiz_background.png")
+background_3 = pygame.transform.scale(quiz_background, (WIDTH, HEIGHT))
 
 # Load character facial expression set
 char_expression_1 = pygame.transform.scale(pygame.image.load("assets/neutral2.png"), (300, 400))
