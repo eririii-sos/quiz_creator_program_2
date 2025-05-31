@@ -209,6 +209,7 @@ while running:
 
         if current_line >= len(scene_1_monologue):  # Have Yes and No buttons appear after monologue
             show_yes_no = True
+            screen.blit(char_expression_9, (WIDTH // 2 - 150, HEIGHT - 400))
             draw_yes_no_buttons()
 
     for event in pygame.event.get():
