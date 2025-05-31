@@ -239,7 +239,15 @@ while running:
 
             if game_state == "menu":
                 if start_button.collidepoint(mouse_pos):
+                    # Reset hallway scene 
+                    current_line = 0
+                    typed_text = ""
+                    char_index = 0
+                    text_timer = 0
+                    Hallway_scene_done = False
+                    show_yes_no = False 
                     game_state = "play"               
+                    
                 elif exit_button.collidepoint(mouse_pos):
                     running = False
 
