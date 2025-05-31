@@ -187,13 +187,11 @@ while running:
             Hallway_scene(char_expression_1)  # Character fades in
             Hallway_scene_done = True  
 
-        if current_line < len(scene_1_monologue):
+        if current_line < len(scene_1_monologue): # Update character expressions as dialogue progresses
             typed_text, char_index = process_monologue(current_line, char_index, dt)
-
-        # Update character expressions as dialogue progresses
-        screen.blit(expression_map[current_line], (WIDTH // 2 - 150, HEIGHT - 400))
-        
-        draw_text_box()
+            expression_to_use = expression_map.get(current_line, expression_map[11])
+            screen.blit(expression_to_use, (WIDTH // 2 - 150, HEIGHT - 400))
+            draw_text_box()
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
