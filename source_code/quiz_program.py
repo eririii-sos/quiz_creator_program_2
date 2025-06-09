@@ -98,6 +98,7 @@ box_alpha = 180
 # State variables
 Hallway_scene_done = False # Variable to track if the fade-in has occurred
 show_yes_no = False
+quiz_started = False
 
 # Set menu background
 def draw_menu():
@@ -199,10 +200,9 @@ def show_popup_message():
     screen.blit(instruction_text_1, (WIDTH // 2 - 210, HEIGHT // 2 - 30))
     screen.blit(instruction_text_2, (WIDTH // 2 - 120, HEIGHT // 2))
 
-
-#
+# Set screen layout during quiz game
 def draw_quiz_screen():
-    
+
     screen.blit(background_3, (0, 0))
 
 # Main loop
@@ -234,8 +234,11 @@ while running:
             draw_yes_no_buttons()
 
     elif game_state == "quiz":
+
         show_popup_message()
-        draw_quiz_screen()
+
+        if quiz_started:
+            draw_quiz_screen()
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
