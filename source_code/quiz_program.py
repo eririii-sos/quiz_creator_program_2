@@ -275,6 +275,9 @@ while running:
                             current_line += 1
                             typed_text = ""
                             char_index = 0
+
+                elif game_state == "quiz" and not quiz_started:
+                    quiz_started = True
          
     # Update the display
     pygame.display.flip()            
