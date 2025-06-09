@@ -199,6 +199,12 @@ def show_popup_message():
     screen.blit(instruction_text_1, (WIDTH // 2 - 210, HEIGHT // 2 - 30))
     screen.blit(instruction_text_2, (WIDTH // 2 - 120, HEIGHT // 2))
 
+
+#
+def draw_quiz_screen():
+    
+    screen.blit(background_3, (0, 0))
+
 # Main loop
 running = True
 while running:
@@ -229,6 +235,7 @@ while running:
 
     elif game_state == "quiz":
         show_popup_message()
+        draw_quiz_screen()
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -247,7 +254,7 @@ while running:
                     Hallway_scene_done = False
                     show_yes_no = False 
                     game_state = "play"               
-                    
+
                 elif exit_button.collidepoint(mouse_pos):
                     running = False
 
