@@ -205,6 +205,21 @@ def draw_quiz_screen():
 
     screen.blit(background_3, (0, 0))
 
+# Fade to black transition
+def fade_to_black(duration=1000):
+    fade_surface = pygame.Surface((WIDTH, HEIGHT))
+    fade_surface.fill((0, 0, 0))
+    fade_clock = pygame.time.Clock()
+    alpha = 0
+    fade_speed = 255 / (duration / 10)
+    
+    while alpha < 255:
+        fade_surface.set_alpha(int(alpha))
+        screen.blit(fade_surface, (0, 0))
+        pygame.display.update()
+        alpha += fade_speed
+        fade_clock.tick(60)
+
 # Main loop
 running = True
 while running:
@@ -235,6 +250,7 @@ while running:
 
     elif game_state == "quiz":
 
+        fade_to_black()
         show_popup_message()
 
         if quiz_started:
