@@ -98,6 +98,7 @@ box_alpha = 180
 # State variables
 Hallway_scene_done = False # Variable to track if the fade-in has occurred
 show_yes_no = False
+quiz_transition_done = False
 quiz_started = False
 
 # Set menu background
@@ -250,10 +251,12 @@ while running:
 
     elif game_state == "quiz":
 
-        fade_to_black()
-        show_popup_message()
+        if not quiz_transition_done:
+            fade_to_black()
+            quiz_transition_done = True
+            show_popup_message()
 
-        if quiz_started:
+        elif quiz_started:
             draw_quiz_screen()
     
     for event in pygame.event.get():
@@ -292,7 +295,7 @@ while running:
                             typed_text = ""
                             char_index = 0
 
-                elif game_state == "quiz" and not quiz_started:
+                elif game_state == "quiz" and quiz_transition_done and not quiz_started:
                     quiz_started = True
          
     # Update the display
