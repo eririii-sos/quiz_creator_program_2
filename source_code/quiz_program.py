@@ -238,11 +238,31 @@ def load_quiz_questions(quiz_file):
 quiz_data = load_quiz_questions("quiz_creator_questions.txt")
 current_question_index = 0
 
+# Setup for quiz UI
+quiz_font = pygame.font.Font(None, 25)
+quiz_question_rect = pygame.Rect(580, 170, 270, 100)
+quiz_choices_rects = [pygame.Rect(580, 220 + i*50, 270, 40) for i in range(4)]
+
 # Set screen layout during quiz game
 def draw_quiz_screen():
 
+    global quiz_data, current_question_index
     screen.blit(background_3, (0, 0))
 
+    progress = f"PROGRESS: {current_question_index + 1}/{len(quiz_data)}"
+    screen.blit(font.render(progress, True, (0, 0, 0)), (WIDTH - 800, 240))
+
+    question_data = quiz_data[current_question_index]
+
+    question_surface = quiz_font.render(question_data["question"], True, (0, 0, 0))
+    screen.blit(question_surface, quiz_question_rect.topleft)
+
+    for i, rect in enumerate(quiz_choices_rects):
+        if i < len(question_data["choices"]):  # ✅ Only draw available choices
+            pygame.draw.rect(screen, (255, 255, 0), rect)
+            choice_text = quiz_font.render(question_data["choices"][i], True, (0, 0, 0))
+            screen.blit(choice_text, (rect.x + 10, rect.y + 10))
+    
 # Fade to black transition
 def fade_to_black(duration=1000):
     fade_surface = pygame.Surface((WIDTH, HEIGHT))
@@ -322,6 +342,19 @@ while running:
                     game_state = "quiz"
                 elif no_button.collidepoint(mouse_pos):
                     game_state = "menu"
+
+            elif game_state == "quiz":
+
+                if current_question_index < len(quiz_data):
+                    for i, rect in enumerate(quiz_choices_rects):
+                        if rect.collidepoint(mouse_pos):
+                            question_data = quiz_data[current_question_index]
+                            selected = question_data["choices"][i][0].lower()
+                            correct = question_data["answer"]
+                            current_question_index += 1
+
+                            if current_question_index >= len(quiz_data):
+                                fade_to_black()                
 
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
