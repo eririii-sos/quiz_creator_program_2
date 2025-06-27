@@ -201,6 +201,9 @@ def show_popup_message():
     screen.blit(instruction_text_1, (WIDTH // 2 - 210, HEIGHT // 2 - 30))
     screen.blit(instruction_text_2, (WIDTH // 2 - 120, HEIGHT // 2))
 
+# Load and set necessities for quiz part
+quiz_file = 'quiz_creator_questions.txt'
+
 # Set screen layout during quiz game
 def draw_quiz_screen():
 
