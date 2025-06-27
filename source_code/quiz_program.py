@@ -204,6 +204,34 @@ def show_popup_message():
 # Load and set necessities for quiz part
 quiz_file = 'quiz_creator_questions.txt'
 
+# Loading of quiz portion's q&a base on the txt file containing the data of the quiz creator program
+def load_quiz_questions(quiz_file):
+    with open(quiz_file, 'r') as file:
+        content = file.read().strip()
+    raw_questions = content.split("--------------------------------------------------")
+    questions = []
+    for block in raw_questions:
+        lines = block.strip().splitlines()
+        if not lines:
+            continue
+        q_data = {
+            "question": lines[0].replace("Question: ", "").strip(),
+            "choices": [],
+            "answer": ""
+        }
+        
+        if len(q_data["choices"]) == 4 and q_data["answer"] in ['a', 'b', 'c', 'd']:
+            questions.append(q_data)
+
+        for line in lines[1:]:
+            line = line.strip()
+            if line.startswith("a)") or line.startswith("b)") or line.startswith("c)") or line.startswith("d)"):
+                q_data["choices"].append(line)
+            elif line.startswith("Correct Answer:"):
+                q_data["answer"] = line[-1].lower()
+        questions.append(q_data)
+    return questions
+
 # Set screen layout during quiz game
 def draw_quiz_screen():
 
