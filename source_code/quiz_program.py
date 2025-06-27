@@ -234,6 +234,10 @@ def load_quiz_questions(quiz_file):
     random.shuffle(questions) # Randomize the question set
     return questions
 
+# Load quiz data
+quiz_data = load_quiz_questions("quiz_creator_questions.txt")
+current_question_index = 0
+
 # Set screen layout during quiz game
 def draw_quiz_screen():
 
