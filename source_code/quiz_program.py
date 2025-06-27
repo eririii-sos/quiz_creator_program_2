@@ -6,6 +6,7 @@
 # Import library
 import pygame
 import sys
+import random
 
 # Initialyze pygame
 pygame.init()
@@ -230,6 +231,7 @@ def load_quiz_questions(quiz_file):
             elif line.startswith("Correct Answer:"):
                 q_data["answer"] = line[-1].lower()
         questions.append(q_data)
+    random.shuffle(questions) # Randomize the question set
     return questions
 
 # Set screen layout during quiz game
