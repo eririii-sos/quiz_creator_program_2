@@ -90,6 +90,7 @@ clock = pygame.time.Clock()
 
 # Game state
 game_state = "menu"
+developer_info_active = False
 
 # Font setup
 font = pygame.font.Font(None, 28)
@@ -358,6 +359,36 @@ def draw_result_screen():
     pygame.draw.rect(screen, (255, 0, 0), exit_button_rect)
     screen.blit(exit_text, (WIDTH // 2 - 80, HEIGHT // 2 + 245))
 
+# Developer Information
+def developer_info():
+    screen.fill((0, 0, 128)) 
+    lines = [
+        "Quiz Day",
+        "",
+        "Developed by:",
+        "Jacey Erin D. Concepcion",
+        "",
+
+        "",
+        "GitHub: Jacey Concepcion | @eririii-sos",
+        "https://github.com/eririii-sos/quiz_creator_program_2",
+        "",
+        "Special thanks to Prof. Danilo Madrigalajos!",
+        "",
+
+        "",
+        "2025 | Made with Python and Pygame.",
+        "",
+        "[ Press ESC to return to Menu ]"
+        ""
+    ]
+
+    y = 50
+    for line in lines:
+        text_surface = font.render(line, True, (255, 255, 255))
+        screen.blit(text_surface, (50, y))
+        y += 30
+
 # Main loop
 running = True
 while running:
@@ -368,6 +399,9 @@ while running:
         draw_menu()
         dev_info_button()
     
+    elif game_state == "developer_info":
+        developer_info()
+
     elif game_state == "play":
         screen.blit(background_2, (0, 0))
 
@@ -432,6 +466,9 @@ while running:
 
                 elif exit_button.collidepoint(mouse_pos):
                     running = False
+
+                elif info_button.collidepoint(mouse_pos):
+                    game_state = "developer_info"
 
             elif game_state == "play" and show_yes_no:
                 if yes_button.collidepoint(mouse_pos):
