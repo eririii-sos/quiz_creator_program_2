@@ -97,12 +97,13 @@ box_color = (0, 0, 0)
 box_alpha = 180
 
 # State variables
-Hallway_scene_done = False # Variable to track if the fade-in has occurred
+hallway_scene_done = False # Variable to track if the fade-in has occurred
 show_yes_no = False
 quiz_transition_done = False
 quiz_started = False
 quiz_active = False
 quiz_finished = False
+questions_answered = 0
 
 # Set menu background
 def draw_menu():
@@ -330,9 +331,9 @@ while running:
     elif game_state == "play":
         screen.blit(background_2, (0, 0))
 
-        if not Hallway_scene_done:
+        if not hallway_scene_done:
             Hallway_scene(char_expression_1)  # Character fades in
-            Hallway_scene_done = True  
+            hallway_scene_done = True  
 
         if current_line < len(scene_1_monologue): # Update character expressions as monologue progresses
             typed_text, char_index = process_monologue(current_line, char_index, dt)
@@ -352,7 +353,7 @@ while running:
             quiz_transition_done = True
             show_popup_message()
 
-        elif quiz_started:
+        elif quiz_started and not quiz_finished:
             draw_quiz_screen()
             if question_timer > 0:
                 question_timer -= dt
@@ -380,7 +381,7 @@ while running:
                     typed_text = ""
                     char_index = 0
                     text_timer = 0
-                    Hallway_scene_done = False
+                    hallway_scene_done = False
                     show_yes_no = False 
                     game_state = "play"               
 
@@ -422,8 +423,11 @@ while running:
                             char_index = 0
 
                 elif game_state == "quiz" and quiz_transition_done and not quiz_started:
+                    show_quiz_popup = False
                     quiz_started = True
                     quiz_active = True
-         
+                    question_timer = 21000  # Reset timer on start
+                    start_time = pygame.time.get_ticks()  
+
     # Update the display
     pygame.display.flip()            
