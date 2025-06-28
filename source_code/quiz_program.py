@@ -526,4 +526,7 @@ while running:
                 game_state = "menu"                
 
     # Update the display
-    pygame.display.flip()         
+    pygame.display.flip()     
+
+pygame.quit()
+sys.exit()       
