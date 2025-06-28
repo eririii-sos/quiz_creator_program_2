@@ -248,11 +248,22 @@ def draw_quiz_screen():
 
     global quiz_data, current_question_index
     screen.blit(background_3, (0, 0))
+    
+    # Error handling if no q&a data to use
+    if not quiz_data or current_question_index >= len(quiz_data):
 
+        error_text_box = pygame.Surface((600, 200))
+        error_text_box.fill((255, 255, 255))
+        screen.blit(error_text_box, (WIDTH // 2 - 300, HEIGHT // 2 - 100))
+
+        error_text = font.render("No quiz questions available.", True, (255, 0, 0))
+        screen.blit(error_text, (WIDTH // 2 - 150, HEIGHT // 2)) 
+        return
+    
+    question_data = quiz_data[current_question_index]
+    
     progress = f"PROGRESS: {current_question_index + 1}/{len(quiz_data)}"
     screen.blit(font.render(progress, True, (0, 0, 0)), (WIDTH - 800, 240))
-
-    question_data = quiz_data[current_question_index]
 
     question_surface = quiz_font.render(question_data["question"], True, (0, 0, 0))
     screen.blit(question_surface, quiz_question_rect.topleft)
@@ -262,7 +273,7 @@ def draw_quiz_screen():
             pygame.draw.rect(screen, (255, 255, 0), rect)
             choice_text = quiz_font.render(question_data["choices"][i], True, (0, 0, 0))
             screen.blit(choice_text, (rect.x + 10, rect.y + 10))
-    
+
 # Fade to black transition
 def fade_to_black(duration=1000):
     fade_surface = pygame.Surface((WIDTH, HEIGHT))
