@@ -352,6 +352,12 @@ def draw_result_screen():
     screen.blit(mark_image, (WIDTH - 500, 230))
     screen.blit(char_expression, (WIDTH - 890, 130))
 
+    # Draw "Press Esc to Exit" button
+    exit_text = font.render("Press Esc to Exit", True, (255, 255, 255))
+    exit_button_rect = pygame.Rect(WIDTH // 2 - 100, HEIGHT // 2 + 230, 200, 50)
+    pygame.draw.rect(screen, (255, 0, 0), exit_button_rect)
+    screen.blit(exit_text, (WIDTH // 2 - 80, HEIGHT // 2 + 245))
+
 # Main loop
 running = True
 while running:
@@ -468,6 +474,9 @@ while running:
                     quiz_active = True
                     question_timer = 21000  # Reset timer on start
                     start_time = pygame.time.get_ticks()  
+
+            elif event.key == pygame.K_ESCAPE:
+                game_state = "menu"                
 
     # Update the display
     pygame.display.flip()            
