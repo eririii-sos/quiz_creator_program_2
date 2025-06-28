@@ -318,6 +318,14 @@ def fade_to_black(duration=1000):
         alpha += fade_speed
         fade_clock.tick(60)
 
+# Show quiz results
+def draw_result_screen():
+    screen.fill((0,0,0))
+    screen.blit(background_3, (0, 0))
+    result_text = f"You got {user_score}/{len(quiz_data)} correct!"
+    result_surface = title_font.render(result_text, True, (0, 0, 0))
+    screen.blit(result_surface, (WIDTH // 2 - 200, HEIGHT // 2 - 30))
+
 # Main loop
 running = True
 while running:
@@ -365,8 +373,13 @@ while running:
                     question_timer = 21000
                 else:
                     quiz_finished = True
-                    fade_to_black()            
-    
+                    fade_to_black()  
+                    game_state = "result"
+            
+
+    elif game_state == "result":
+        draw_result_screen()
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -411,7 +424,8 @@ while running:
                             question_timer = 21000  # Reset timer for next question (20 seconds)
 
                             if current_question_index >= len(quiz_data):
-                                fade_to_black()                
+                                fade_to_black()
+                                game_state = "result"                
 
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_SPACE:
