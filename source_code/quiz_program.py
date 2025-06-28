@@ -291,6 +291,13 @@ def handle_timer():
         if current_question_index >= len(quiz_data):
             return
 
+# Reload quiz q&a set every play
+def reset_quiz():
+    global quiz_data, current_question_index, quiz_transition_done
+    quiz_data = load_quiz_questions(quiz_file)  # Reload and randomize the questions
+    current_question_index = 0
+    quiz_transition_done = False
+
 # Fade to black transition
 def fade_to_black(duration=1000):
     fade_surface = pygame.Surface((WIDTH, HEIGHT))
@@ -378,8 +385,10 @@ while running:
 
             elif game_state == "play" and show_yes_no:
                 if yes_button.collidepoint(mouse_pos):
+                    reset_quiz()
                     game_state = "quiz"
                 elif no_button.collidepoint(mouse_pos):
+                    reset_quiz()
                     game_state = "menu"
 
             elif game_state == "quiz":
