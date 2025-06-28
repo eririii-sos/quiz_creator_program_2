@@ -101,6 +101,8 @@ Hallway_scene_done = False # Variable to track if the fade-in has occurred
 show_yes_no = False
 quiz_transition_done = False
 quiz_started = False
+quiz_active = False
+quiz_finished = False
 
 # Set menu background
 def draw_menu():
@@ -350,6 +352,7 @@ while running:
                 if current_question_index < len(quiz_data):
                     question_timer = 21000
                 else:
+                    quiz_finished = True
                     fade_to_black()            
     
     for event in pygame.event.get():
@@ -381,7 +384,7 @@ while running:
 
             elif game_state == "quiz":
 
-                if current_question_index < len(quiz_data):
+                if not quiz_finished and current_question_index < len(quiz_data):
                     for i, rect in enumerate(quiz_choices_rects):
                         if rect.collidepoint(mouse_pos):
                             question_data = quiz_data[current_question_index]
@@ -404,6 +407,7 @@ while running:
 
                 elif game_state == "quiz" and quiz_transition_done and not quiz_started:
                     quiz_started = True
+                    quiz_active = True
          
     # Update the display
     pygame.display.flip()            
