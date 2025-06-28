@@ -25,6 +25,16 @@ background_2 = pygame.transform.scale(school_hall_background, (WIDTH, HEIGHT))
 quiz_background = pygame.image.load("assets/quiz_background.png")
 background_3 = pygame.transform.scale(quiz_background, (WIDTH, HEIGHT))
 
+# Load quiz's grade display for result portion (Failed, Poor, Passed, Perfect + character expression)
+failed_mark = pygame.transform.scale(pygame.image.load("assets/failed_mark.png"),(300, 150))
+poor_mark = pygame.transform.scale(pygame.image.load("assets/poor_mark.png"),(300, 150))
+passed_mark = pygame.transform.scale(pygame.image.load("assets/passed_mark.png"),(300, 150))
+perfect_mark = pygame.transform.scale(pygame.image.load("assets/perfect_mark.png"),(300, 150))
+failed_expression = pygame.transform.scale(pygame.image.load("assets/failed.png"),(300, 300))
+poor_expression = pygame.transform.scale(pygame.image.load("assets/average.png"),(300, 300))
+passed_expression = pygame.transform.scale(pygame.image.load("assets/passed.png"),(300, 300))
+happy_expression = pygame.transform.scale(pygame.image.load("assets/happy.png"),(300, 300))
+
 # Load character facial expression set
 char_expression_1 = pygame.transform.scale(pygame.image.load("assets/neutral2.png"), (300, 400))
 char_expression_2 = pygame.transform.scale(pygame.image.load("assets/shocked.png"), (300, 400))
