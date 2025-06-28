@@ -120,18 +120,14 @@ questions_answered = 0
 def draw_menu():
     screen.blit(background_1, (0, 0))  # Draw background
 
-    # Draw menu buttons and label
-    pygame.draw.rect(screen, (100, 100, 100), start_button)
-    pygame.draw.rect(screen, (100, 100, 100), exit_button)
-    start_text = font.render("Start", True, (255, 255, 255))
-    exit_text = font.render("Exit", True, (255, 255, 255))
-    screen.blit(start_text, (start_button.x + 70, start_button.y + 15))
-    screen.blit(exit_text, (exit_button.x + 70, exit_button.y + 15))
+    # Comment proceeding parts so they are invisible
+    # pygame.draw.rect(screen, (100, 100, 100), start_button)
+    # pygame.draw.rect(screen, (100, 100, 100), exit_button)
+    # screen.blit(start_button.x + 70, start_button.y + 15)
+    # screen.blit(exit_button.x + 70, exit_button.y + 15)
 
-def dev_info_button():
-    pygame.draw.rect(screen, (100, 100, 100), info_button)
-    info_text = font.render("About", True, (255, 255, 255))
-    screen.blit(info_text, (info_button.x + 20, info_button.y + 10))
+    # pygame.draw.rect(screen, (100, 100, 100), info_button)
+    # screen.blit(info_text, (info_button.x + 20, info_button.y + 10))
 
 # Text box for character monologue in 1st scene
 def draw_text_box():
@@ -397,7 +393,6 @@ while running:
 
     if game_state == "menu":
         draw_menu()
-        dev_info_button()
     
     elif game_state == "developer_info":
         developer_info()
