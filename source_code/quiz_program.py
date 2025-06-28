@@ -397,6 +397,8 @@ def developer_info():
         y += 30
 
 # Main loop
+music_1()
+
 running = True
 while running:
     
@@ -461,6 +463,8 @@ while running:
 
             if game_state == "menu":
                 if start_button.collidepoint(mouse_pos):
+
+                    music_2()
                     # Reset hallway scene 
                     current_line = 0
                     typed_text = ""
@@ -522,4 +526,4 @@ while running:
                 game_state = "menu"                
 
     # Update the display
-    pygame.display.flip()            
+    pygame.display.flip()         
