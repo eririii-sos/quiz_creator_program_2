@@ -242,6 +242,7 @@ current_question_index = 0
 quiz_font = pygame.font.Font(None, 25)
 quiz_question_rect = pygame.Rect(580, 170, 270, 100)
 quiz_choices_rects = [pygame.Rect(580, 220 + i*50, 270, 40) for i in range(4)]
+question_timer = 21000
 
 # Set screen layout during quiz game
 def draw_quiz_screen():
@@ -273,6 +274,20 @@ def draw_quiz_screen():
             pygame.draw.rect(screen, (255, 255, 0), rect)
             choice_text = quiz_font.render(question_data["choices"][i], True, (0, 0, 0))
             screen.blit(choice_text, (rect.x + 10, rect.y + 10))
+
+    timer_seconds = question_timer / 1000
+    timer_surface = font.render(f"Time Left: {int(timer_seconds)}s", True, (255, 0, 0))
+    screen.blit(timer_surface, (WIDTH - 800, 270))
+
+# Update quiz timer handling
+def handle_timer():
+    global question_timer, current_question_index, user_score
+    if question_timer <= 0:  # If the timer runs out
+        question_timer = 21000  # Reset timer for the next question
+        user_score -= 1  # Decrease score for incorrect answer (default behavior)
+        current_question_index += 1  # Move to the next question
+        if current_question_index >= len(quiz_data):
+            return
 
 # Fade to black transition
 def fade_to_black(duration=1000):
@@ -326,6 +341,16 @@ while running:
 
         elif quiz_started:
             draw_quiz_screen()
+            if question_timer > 0:
+                question_timer -= dt
+            else:
+                question_timer = 0
+                questions_answered += 1
+                current_question_index += 1
+                if current_question_index < len(quiz_data):
+                    question_timer = 21000
+                else:
+                    fade_to_black()            
     
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -363,6 +388,7 @@ while running:
                             selected = question_data["choices"][i][0].lower()
                             correct = question_data["answer"]
                             current_question_index += 1
+                            question_timer = 21000  # Reset timer for next question (20 seconds)
 
                             if current_question_index >= len(quiz_data):
                                 fade_to_black()                
