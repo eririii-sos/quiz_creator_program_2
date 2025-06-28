@@ -336,6 +336,22 @@ def draw_result_screen():
     result_surface = title_font.render(result_text, True, (12, 0, 0))
     screen.blit(result_surface, (WIDTH - 480, 220))
 
+    # Show result mark image based on score
+    if user_score == 0:
+        mark_image = failed_mark
+        char_expression = failed_expression
+    elif user_score < len(quiz_data) // 2:
+        mark_image = poor_mark
+        char_expression = poor_expression
+    elif user_score >= len(quiz_data) // 2:
+        mark_image = passed_mark
+        char_expression = passed_expression
+    elif user_score == len(quiz_data):
+        mark_image = perfect_mark
+        char_expression = happy_expression
+    screen.blit(mark_image, (WIDTH - 500, 230))
+    screen.blit(char_expression, (WIDTH - 890, 130))
+
 # Main loop
 running = True
 while running:
