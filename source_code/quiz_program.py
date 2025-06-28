@@ -239,6 +239,8 @@ def load_quiz_questions(quiz_file):
 # Load quiz data
 quiz_data = load_quiz_questions("quiz_creator_questions.txt")
 current_question_index = 0
+user_score = 0
+user_answers = []
 
 # Setup for quiz UI
 quiz_font = pygame.font.Font(None, 25)
@@ -293,9 +295,11 @@ def handle_timer():
 
 # Reload quiz q&a set every play
 def reset_quiz():
-    global quiz_data, current_question_index, quiz_transition_done
+    global quiz_data, current_question_index, user_score, user_answers, quiz_transition_done
     quiz_data = load_quiz_questions(quiz_file)  # Reload and randomize the questions
     current_question_index = 0
+    user_score = 0
+    user_answers = []    
     quiz_transition_done = False
 
 # Fade to black transition
@@ -399,6 +403,9 @@ while running:
                             question_data = quiz_data[current_question_index]
                             selected = question_data["choices"][i][0].lower()
                             correct = question_data["answer"]
+                            user_answers.append(selected)
+                            if selected == correct:
+                                user_score += 1                            
                             current_question_index += 1
                             question_timer = 21000  # Reset timer for next question (20 seconds)
 
