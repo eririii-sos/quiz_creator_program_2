@@ -46,6 +46,17 @@ char_expression_7 = pygame.transform.scale(pygame.image.load("assets/begging.png
 char_expression_8 = pygame.transform.scale(pygame.image.load("assets/begging2.png"), (300, 400))
 char_expression_9 = pygame.transform.scale(pygame.image.load("assets/thinking.png"), (300, 400))
 
+# Load music set
+def music_1():
+    pygame.mixer.music.load("home_bg_music.mp3")
+    pygame.mixer.music.set_volume(0.5)
+    pygame.mixer.music.play(-1)  # Loop forever
+
+def music_2():
+    pygame.mixer.music.load("hallway_bg_music.mp3")
+    pygame.mixer.music.set_volume(0.5)
+    pygame.mixer.music.play(-1)  # Loop forever
+
 # Monologue text data for the hallway scene
 scene_1_monologue = [
     "(Press SPACE to proceed)",  # First message
