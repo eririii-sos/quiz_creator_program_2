@@ -83,7 +83,7 @@ game_state = "menu"
 
 # Font setup
 font = pygame.font.Font(None, 28)
-title_font = pygame.font.Font(None, 48)
+title_font = pygame.font.Font(None, 40)
 
 # Set Menu buttons
 start_button = pygame.Rect(395, 270, 280, 60)
@@ -323,8 +323,8 @@ def draw_result_screen():
     screen.fill((0,0,0))
     screen.blit(background_3, (0, 0))
     result_text = f"You got {user_score}/{len(quiz_data)} correct!"
-    result_surface = title_font.render(result_text, True, (0, 0, 0))
-    screen.blit(result_surface, (WIDTH // 2 - 200, HEIGHT // 2 - 30))
+    result_surface = title_font.render(result_text, True, (12, 0, 0))
+    screen.blit(result_surface, (WIDTH - 480, 220))
 
 # Main loop
 running = True
